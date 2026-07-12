@@ -657,6 +657,43 @@
       outline-offset: 2px;
     }
 
+    .review-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      width: 100%;
+      flex-wrap: wrap;
+    }
+
+    .clear-all-btn {
+      background: none;
+      border: 1px solid var(--accent-2);
+      color: var(--accent-2);
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+    }
+
+    .clear-all-btn:hover:not(:disabled) {
+      background: var(--accent-2);
+      color: var(--paper);
+    }
+
+    .clear-all-btn:focus-visible {
+      outline: 2px solid var(--paper);
+      outline-offset: 2px;
+    }
+
+    .clear-all-btn:disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
+
     /* === Review Card Checkbox === */
     .review-card-wrap {
       display: flex;
@@ -1210,6 +1247,15 @@
       outline-offset: 2px;
     }
   </style>
+  <!-- Plausible: privacy-friendly pageview counting only. No cookies, no session/event tracking.
+       Loads over the network, so offline sessions simply aren't counted (by design).
+       To strip from a fork, delete this whole block (both <script> tags). -->
+  <!-- Privacy-friendly analytics by Plausible -->
+  <script async src="https://plausible.io/js/pa-aCemsgbdYbXG3kURHtSQQ.js"></script>
+  <script>
+    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+    plausible.init()
+  </script>
 </head>
 <body>
 
@@ -1314,7 +1360,10 @@
       <button class="export-btn" id="export-csv" disabled>CSV</button>
       <button class="export-btn" id="export-json" disabled>Decidim JSON</button>
     </div>
-    <button class="back-btn" id="review-back-btn">&#8592; Back</button>
+    <div class="review-footer">
+      <button class="back-btn" id="review-back-btn">&#8592; Back</button>
+      <button class="clear-all-btn" id="clear-all-btn" disabled>Clear all proposals</button>
+    </div>
   </div>
 
   <!-- ===== Landing Screen ===== -->
@@ -1409,6 +1458,7 @@
       currentSpinName: '',
       currentSpinPrompt: '',
       proposals: [],
+      exportedSinceChange: true,
       previousScreen: 'landing',
       usedNamePrompts: [],
       usedIdeaPrompts: []
@@ -1471,6 +1521,43 @@
 
     function saveSettingsObj(obj) {
       localStorage.setItem('ideaspinner-settings', JSON.stringify(obj));
+    }
+
+    // ---- Proposal persistence ----
+    // Proposals survive a refresh (previously in-memory only, so a refresh lost
+    // everything). We also remember whether they've been exported since they last
+    // changed, so we can warn loudly before a wipe destroys unsaved work.
+    function saveProposals() {
+      try {
+        localStorage.setItem('ideaspinner-proposals', JSON.stringify(state.proposals));
+        localStorage.setItem('ideaspinner-exported', state.exportedSinceChange ? '1' : '0');
+      } catch (e) {
+        // Storage unavailable/full — proposals stay in memory for this session.
+      }
+    }
+
+    function loadProposals() {
+      try {
+        var raw = localStorage.getItem('ideaspinner-proposals');
+        state.proposals = raw ? (JSON.parse(raw) || []) : [];
+      } catch (e) {
+        state.proposals = [];
+      }
+      // Absent flag: nothing to lose if empty (true), otherwise assume unexported (false).
+      var flag = localStorage.getItem('ideaspinner-exported');
+      state.exportedSinceChange = flag === null ? state.proposals.length === 0 : flag === '1';
+    }
+
+    // A proposal was added/changed and has not been exported yet.
+    function markProposalsChanged() {
+      state.exportedSinceChange = false;
+      saveProposals();
+    }
+
+    // The current proposals were just exported (copy/email/csv/json).
+    function markExported() {
+      state.exportedSinceChange = true;
+      saveProposals();
     }
 
     function getNamePrompts() {
@@ -1942,6 +2029,7 @@
       const countEl = document.getElementById('review-count');
       list.innerHTML = '';
       countEl.textContent = state.proposals.length;
+      document.getElementById('clear-all-btn').disabled = state.proposals.length === 0;
 
       // Pre-fill email from localStorage
       const emailInput = document.getElementById('email-input');
@@ -2082,6 +2170,7 @@
       if (!selected.length) return;
       var text = formatAsPlainText(selected);
       navigator.clipboard.writeText(text).then(function () {
+        markExported();
         showToast('Copied!');
       }, function () {
         showToast('Copy failed — try again');
@@ -2102,6 +2191,7 @@
       var body = encodeURIComponent(intro + formatAsPlainText(selected));
       window.location.href = 'mailto:' + encodeURIComponent(recipient) +
         '?subject=' + subject + '&body=' + body;
+      markExported();
     });
 
     // --- CSV ---
@@ -2117,6 +2207,7 @@
       });
       var blob = new Blob([rows.join('\n')], { type: 'text/csv;charset=utf-8' });
       downloadBlob(blob, 'idea-spinner-proposals.csv');
+      markExported();
     });
 
     // --- Decidim JSON ---
@@ -2134,6 +2225,7 @@
       var json = JSON.stringify(data, null, 2);
       var blob = new Blob([json], { type: 'application/json;charset=utf-8' });
       downloadBlob(blob, 'idea-spinner-decidim.json');
+      markExported();
     });
 
     // --- Save email on input ---
@@ -2150,6 +2242,26 @@
 
     document.getElementById('review-back-btn').addEventListener('click', function () {
       showScreen(state.previousScreen);
+    });
+
+    // --- Clear all proposals (facilitator wipe, e.g. between events) ---
+    document.getElementById('clear-all-btn').addEventListener('click', function () {
+      var count = state.proposals.length;
+      if (count === 0) return;
+      var noun = count === 1 ? 'proposal' : 'proposals';
+      var msg;
+      if (state.exportedSinceChange) {
+        msg = 'Delete all ' + count + ' ' + noun + '? This cannot be undone.';
+      } else {
+        msg = "⚠️ You haven't exported these yet — you'll lose all " + count + ' ' + noun +
+          " for good!\n\nExport them first with the Copy, Email, CSV, or Decidim JSON button above.\n\nDelete anyway?";
+      }
+      if (!window.confirm(msg)) return;
+      state.proposals = [];
+      state.exportedSinceChange = true;
+      saveProposals();
+      renderReviewCards();
+      renderProposalIndicator();
     });
 
     // ========================================
@@ -2377,6 +2489,7 @@
         money,
         why
       });
+      markProposalsChanged();
 
       goToThankYou();
     });
@@ -2470,9 +2583,11 @@
     }
 
     // ---- Init ----
+    loadProposals();
     importSettingsFromURL();
     applySettings();
     document.getElementById('settings-btn').classList.add('visible');
+    renderProposalIndicator();
   </script>
 </body>
 </html>
