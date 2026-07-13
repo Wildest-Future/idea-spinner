@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="version" content="0.3.0">
   <title>Idea Spinner</title>
   <style>
     /* === WF Design Studio — Velvet Teal === */
@@ -1049,6 +1050,15 @@
       font-weight: 400;
     }
 
+    .settings-version {
+      text-align: center;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--primary-100);
+      opacity: 0.55;
+    }
+
     .settings-done-btn {
       padding: 0.8rem 2rem;
       font-size: 1.1rem;
@@ -1527,6 +1537,7 @@
       <button class="settings-share-btn" id="settings-share-btn">Copy Share Link</button>
 
       <button class="settings-done-btn" id="settings-done-btn">Done</button>
+      <div class="settings-version" id="settings-version"></div>
     </div>
   </div>
 
@@ -1641,6 +1652,9 @@
   </div>
 
   <script>
+    // ---- Version ----
+    const APP_VERSION = '0.3.0';
+
     // ---- App State ----
     const state = {
       names: [],
@@ -3031,6 +3045,7 @@
     }
 
     // ---- Init ----
+    document.getElementById('settings-version').textContent = 'v' + APP_VERSION;
     loadProposals();
     importSettingsFromURL();
     applySettings();
