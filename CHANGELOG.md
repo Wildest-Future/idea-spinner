@@ -3,6 +3,13 @@
 All notable changes to Idea Spinner. Versions follow [Semantic Versioning](https://semver.org).
 Pre-1.0: still evolving quickly, so minor versions may include behavior/UI changes.
 
+## [0.3.1] — 2026-07-13
+
+### Added
+- Favicon: a segmented-wheel mark (Velvet Teal tile, alternating Marigold and
+  cool-neutral quadrants) shipped as an inline SVG data URI, so the single-file
+  tool stays a single file and the icon works from `file://`.
+
 ## [0.3.0] — 2026-07-12
 
 ### Added
