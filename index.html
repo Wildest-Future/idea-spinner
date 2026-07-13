@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="version" content="0.3.1">
+  <meta name="version" content="0.3.2">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23224749'/><path d='M32 32 L32 8 A24 24 0 0 1 56 32 Z' fill='%23E8A648'/><path d='M32 32 L56 32 A24 24 0 0 1 32 56 Z' fill='%23ECF1F1'/><path d='M32 32 L32 56 A24 24 0 0 1 8 32 Z' fill='%23E8A648'/><path d='M32 32 L8 32 A24 24 0 0 1 32 8 Z' fill='%23ECF1F1'/><circle cx='32' cy='32' r='5' fill='%23224749'/></svg>">
   <title>Idea Spinner</title>
   <style>
@@ -1654,7 +1654,7 @@
 
   <script>
     // ---- Version ----
-    const APP_VERSION = '0.3.1';
+    const APP_VERSION = '0.3.2';
 
     // ---- App State ----
     const state = {
@@ -1674,18 +1674,14 @@
 
     // ---- Name Prompts Pool ----
     const NAME_PROMPTS = [
-      "A friend or neighbor who is between jobs right now",
-      "Someone you know who has trouble getting around the city",
-      "A young person in your life who could use more opportunities",
-      "Someone in your community who is raising kids on their own",
-      "An older person you know who deserves better support",
-      "Someone who has had trouble finding affordable housing",
-      "A person you know who struggles to access healthcare",
-      "Someone in your neighborhood who could use a safer place to hang out",
-      "A friend who has a hard time affording groceries",
-      "Someone you know who would benefit from job training or classes",
-      "A person in your life who has trouble accessing childcare",
-      "Someone who relies on public services that could be better"
+      "A friend who is between jobs right now",
+      "Someone you know with big dreams",
+      "A young person in your life",
+      "Someone who is raising kids on their own",
+      "An older person you know",
+      "Someone you can always count on",
+      "A person in your life who has trouble asking for help",
+      "Someone who rides a bike"
     ];
 
     // ---- Idea Prompts Pool ----
@@ -1710,14 +1706,14 @@
     // a fast way to build a prompt list. Draft copy; refine in the Airtable base.
     const PEOPLE_PACKS = [
       { name: "Youth", prompts: [
-        "A young person who could use a safe place to hang out after school",
-        "A teenager in your life who wants to learn a skill but can't afford it",
-        "A kid you know who has a long or unsafe trip to school"
+        "A younger relative of yours",
+        "A teenager in your life who plays sports",
+        "A kid you know that's always full of energy"
       ] },
-      { name: "Different abilities", prompts: [
-        "Someone you know who uses a wheelchair and finds the neighborhood hard to get around",
-        "A person in your life with a visual or hearing impairment who struggles in public spaces",
-        "Someone you know with a disability who has trouble finding accessible work or activities"
+      { name: "People with different abilities", prompts: [
+        "Someone you know who uses device to move around",
+        "A person in your life with a visual or hearing impairment",
+        "Someone you know who senses the world differently than most"
       ] }
     ];
 

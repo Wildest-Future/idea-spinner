@@ -3,6 +3,13 @@
 All notable changes to Idea Spinner. Versions follow [Semantic Versioning](https://semver.org).
 Pre-1.0: still evolving quickly, so minor versions may include behavior/UI changes.
 
+## [0.3.2] — 2026-07-13
+
+### Changed
+- Refreshed the default people prompts from the Airtable base: shorter, warmer,
+  less deficit-framed (12 → 8). The Youth and "People with different abilities"
+  prompt packs were also updated to their current Airtable copy.
+
 ## [0.3.1] — 2026-07-13
 
 ### Added
