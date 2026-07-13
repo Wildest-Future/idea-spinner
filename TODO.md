@@ -10,9 +10,12 @@
 - [x] 8. Share/import settings via URL — serialize settings object to base64 query param for easy sharing
 - [x] 15. Plausible pageviews — pageview-only script in `<head>`, disclosed in README, no session/event tracking
 - [x] 13. Persist proposals to localStorage — survive refresh; facilitator "Clear all" on Review screen behind a confirm, with a louder warning when nothing has been exported yet
-- [ ] 12. Email client dropdown — split button (Email app / Gmail / Outlook / Yahoo) instead of raw `mailto:`
-- [ ] 16. "Tell us how it went" button — opt-in prefilled feedback email (depends on 12)
-- [ ] 9. Thematic people prompt packs — named arrays + pack picker in settings; keep existing custom prompts working
-- [ ] 10. Thematic idea prompt packs — same shape as 9
-- [ ] 11. Pack import/export — hand off a prompt pack without title/colors (distinct from `?config=`)
+- [x] 12. Email client dropdown — Email ▾ opens Mail app / Gmail / Outlook / Yahoo compose links (viewport-aware, flips up on mobile) instead of a raw `mailto:`
+- [x] 16. "Tell us how it went" button — opt-in prefilled feedback email to francesco@wildestfuture.com via the #12 picker; prefills proposal count only (no names/content)
+- [x] 9. Thematic people prompt packs — pack chips in settings append prompts (dedup); Youth + Different abilities packs bundled
+- [x] 10. Thematic idea prompt packs — Capital projects / Public health / Transit safety packs bundled
+- [x] 11. Pack import/export — export current list as plain .txt (one prompt per line), import appends to the section
 - [ ] 14. Login + cross-device proposal save — parked pending 13
+- [x] 17. Typing an answer reveals the proposal fields — merged spin+proposal; typing reveals Title label + money/why + Save (float-up/fade-in); "Spin again" resets
+- [x] 18. Easier exit from Settings — sticky ✕ in the panel header, Escape, and backdrop-click all close (and save, like Done), so you no longer scroll to the bottom for "Done"
+- [x] 19. Default color scheme → Wildest Future palette + contrast pass (fixed generative theme deriving unreadable text colors)

@@ -6,26 +6,32 @@
   <title>Idea Spinner</title>
   <style>
     /* === WF Design Studio — Velvet Teal === */
+    /* === Wildest Future brand palette ===
+       Anchor is Velvet Teal #224749 (locked). Warm cream/olive/tan retired in
+       favor of cool neutrals + Marigold (the spark) + Clay. Variable names kept
+       for low churn; the comment on each notes its brand token + role. All text
+       pairings verified >= WCAG AA. */
     :root {
-      --primary-700: #112627;
-      --primary-500: #224749;
-      --primary-400: #2B5759;
-      --primary-300: #356769;
-      --primary-100: #BBC8C9;
-      --secondary: #8E9370;
-      --accent-1: #A67C52;
-      --accent-2: #8B504C;
-      --olive-deep: #6E744F;
-      --paper: #FAF4DD;
-      --stone: #EEE8D2;
-      --ink: #282413;
-      --hover-teal: #193638;
-      --active-teal: #112627;
-      --olive-hover: #5d6343;
-      --olive-active: #4d5336;
-      --accent-1-hover: #b8894a;
-      --accent-2-hover: #7a4542;
-      --accent-2-active: #6a3a38;
+      --primary-700: #0F2526;   /* WF Primary 800 — darkest strap / active */
+      --primary-500: #224749;   /* WF Velvet Teal — anchor (locked) / page bg */
+      --primary-400: #2E5A5C;   /* raised card/panel, just above the anchor */
+      --primary-300: #3C6A6C;   /* interactive teal (export buttons) */
+      --primary-100: #D6E1E1;   /* WF Primary 100 — muted light text (readable) */
+      --secondary: #6B7575;     /* WF Neutral 500 — placeholder text (on light) */
+      --accent-1: #E8A648;      /* WF Marigold — the spark: pills/focus (ink text) */
+      --accent-2: #8D3E3A;      /* WF Critical — destructive on LIGHT surfaces */
+      --olive-deep: #E8A648;    /* primary button fill = Marigold (ink text) */
+      --paper: #F2F4F4;         /* WF Neutral 50 — light text on dark / light surface */
+      --stone: #E7EAEA;         /* WF Neutral 100 */
+      --ink: #131818;           /* WF Neutral 900 — text on light surfaces */
+      --hover-teal: #1D3E40;    /* WF Primary 600 — hover on anchor */
+      --active-teal: #153234;   /* WF Primary 700 — active on anchor */
+      --olive-hover: #D2932F;   /* Marigold, darker — button hover */
+      --olive-active: #A87527;  /* WF Marigold 700 — button active */
+      --accent-1-hover: #D2932F;/* Marigold, darker */
+      --accent-2-hover: #7a3633;
+      --accent-2-active: #6a2f2c;
+      --danger-light: #EFB0AB;  /* light critical — destructive text/border on DARK */
     }
 
     * {
@@ -83,7 +89,7 @@
       padding: 1.2rem 3.5rem;
       font-size: clamp(1.3rem, 4vw, 1.6rem);
       font-weight: 700;
-      color: #fff;
+      color: var(--ink);
       background-color: var(--olive-deep);
       border: none;
       border-radius: 60px;
@@ -138,8 +144,8 @@
     }
 
     @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(110, 116, 79, 0.5); }
-      50% { box-shadow: 0 0 0 14px rgba(110, 116, 79, 0); }
+      0%, 100% { box-shadow: 0 0 0 0 rgba(232, 166, 72, 0.55); }
+      50% { box-shadow: 0 0 0 14px rgba(232, 166, 72, 0); }
     }
 
     /* === Step Progress Dots === */
@@ -313,32 +319,6 @@
       font-weight: 800;
     }
 
-    .spinner-answer {
-      width: 100%;
-      max-width: 460px;
-      min-height: 70px;
-      padding: 0.8rem 1rem;
-      font-size: clamp(1rem, 3vw, 1.15rem);
-      font-family: inherit;
-      font-weight: 500;
-      color: var(--ink);
-      background-color: var(--paper);
-      border: 3px solid transparent;
-      border-radius: 14px;
-      outline: none;
-      resize: vertical;
-      transition: border-color 0.2s ease;
-    }
-
-    .spinner-answer::placeholder {
-      color: var(--secondary);
-      font-weight: 400;
-    }
-
-    .spinner-answer:focus {
-      border-color: var(--accent-1);
-    }
-
     .spin-btn {
       padding: 0.8rem 2rem;
       font-size: clamp(1.1rem, 3vw, 1.3rem);
@@ -366,53 +346,7 @@
       outline-offset: 4px;
     }
 
-    /* === Proposal Screen === */
-    .proposal-banner {
-      font-size: clamp(1.1rem, 3vw, 1.3rem);
-      font-weight: 600;
-      color: var(--ink);
-      background-color: var(--accent-1);
-      padding: 0.6rem 1.5rem;
-      border-radius: 40px;
-    }
-
-    .proposal-banner .name-variable {
-      border-color: var(--ink);
-    }
-
-    .inspiration-card {
-      width: 100%;
-      background-color: var(--primary-400);
-      border-radius: 14px;
-      padding: 1rem 1.2rem;
-      text-align: left;
-    }
-
-    .inspiration-label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--accent-1);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 0.4rem;
-    }
-
-    .inspiration-prompt {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--primary-100);
-      margin-bottom: 0.5rem;
-      line-height: 1.4;
-    }
-
-    .inspiration-answer {
-      font-size: 1.05rem;
-      font-weight: 500;
-      color: var(--paper);
-      line-height: 1.4;
-      font-style: italic;
-    }
-
+    /* === Proposal form (on the spinner screen) === */
     .proposal-form {
       width: 100%;
       display: flex;
@@ -460,6 +394,54 @@
     .field-input::placeholder {
       color: var(--secondary);
       font-weight: 400;
+    }
+
+    /* Progressive reveal on the spinner screen: the Title label and the
+       money/why/Save block stay hidden until the participant starts typing an
+       answer, then float up and fade in. Reveal is one-way per spin (Spin again
+       resets it). Height animates via the grid 0fr->1fr trick so there's no
+       harsh pop and no guessed max-height. */
+    .spinner-answer-label {
+      opacity: 0;
+      max-height: 0;
+      margin-bottom: 0;
+      overflow: hidden;
+      transform: translateY(6px);
+      transition: opacity 0.35s ease, transform 0.35s ease,
+                  max-height 0.35s ease, margin-bottom 0.35s ease;
+    }
+
+    #spinner-screen.answering .spinner-answer-label {
+      opacity: 1;
+      max-height: 1.6rem;
+      margin-bottom: 0.4rem;
+      transform: translateY(0);
+    }
+
+    .spinner-extra {
+      display: grid;
+      grid-template-rows: 0fr;
+      opacity: 0;
+      transition: grid-template-rows 0.45s ease, opacity 0.45s ease;
+    }
+
+    .spinner-extra-inner {
+      overflow: hidden;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transform: translateY(12px);
+      transition: transform 0.45s ease;
+    }
+
+    #spinner-screen.answering .spinner-extra {
+      grid-template-rows: 1fr;
+      opacity: 1;
+    }
+
+    #spinner-screen.answering .spinner-extra-inner {
+      transform: translateY(0);
     }
 
     /* === Start Over link === */
@@ -632,7 +614,7 @@
 
     .review-card-detail-label {
       font-weight: 600;
-      color: var(--accent-1);
+      color: var(--primary-100);
     }
 
     .back-btn {
@@ -660,7 +642,7 @@
     .review-footer {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       gap: 1rem;
       width: 100%;
       flex-wrap: wrap;
@@ -668,8 +650,8 @@
 
     .clear-all-btn {
       background: none;
-      border: 1px solid var(--accent-2);
-      color: var(--accent-2);
+      border: 1px solid var(--danger-light);
+      color: var(--danger-light);
       font-family: inherit;
       font-size: 0.9rem;
       font-weight: 600;
@@ -680,8 +662,8 @@
     }
 
     .clear-all-btn:hover:not(:disabled) {
-      background: var(--accent-2);
-      color: var(--paper);
+      background: var(--danger-light);
+      color: var(--ink);
     }
 
     .clear-all-btn:focus-visible {
@@ -818,14 +800,90 @@
       outline-offset: 2px;
     }
 
+    /* === Email client picker (dropdown) === */
+    .email-menu {
+      position: absolute;
+      display: none;
+      flex-direction: column;
+      min-width: 170px;
+      background: var(--paper);
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      padding: 0.35rem;
+      z-index: 1000;
+    }
+
+    .email-menu.open {
+      display: flex;
+    }
+
+    .email-menu-item {
+      display: block;
+      text-align: left;
+      padding: 0.6rem 0.8rem;
+      border-radius: 6px;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .email-menu-item:hover,
+    .email-menu-item:focus-visible {
+      background: var(--stone);
+      outline: none;
+    }
+
+    .email-menu-note {
+      padding: 0.4rem 0.8rem 0.2rem;
+      color: var(--primary-400);
+      font-size: 0.72rem;
+      font-weight: 500;
+      line-height: 1.3;
+    }
+
+    /* === Feedback button ("Tell us how it went") === */
+    .review-actions {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.1rem 0 0.4rem;
+    }
+
+    .feedback-btn {
+      background: none;
+      border: 1px dashed var(--primary-100);
+      color: var(--primary-100);
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0.5rem 1.1rem;
+      border-radius: 40px;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .feedback-btn:hover {
+      color: var(--paper);
+      border-color: var(--paper);
+    }
+
+    .feedback-btn:focus-visible {
+      outline: 2px solid var(--paper);
+      outline-offset: 2px;
+    }
+
     /* === Toast Notification === */
     .toast {
       position: fixed;
       bottom: 2rem;
       left: 50%;
       transform: translateX(-50%) translateY(20px);
-      background-color: var(--olive-deep);
-      color: #fff;
+      background-color: var(--active-teal);
+      color: var(--paper);
       font-family: inherit;
       font-size: 0.95rem;
       font-weight: 600;
@@ -834,7 +892,7 @@
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.25s ease, transform 0.25s ease;
-      z-index: 100;
+      z-index: 300; /* above the settings overlay (200) so pack toasts show */
     }
 
     .toast.visible {
@@ -892,7 +950,7 @@
     .settings-panel {
       background-color: var(--primary-400);
       border-radius: 16px;
-      padding: 1.5rem;
+      padding: 0 1.5rem 1.5rem;
       width: 100%;
       max-width: 400px;
       max-height: 80vh;
@@ -902,10 +960,55 @@
       gap: 1.2rem;
     }
 
+    .settings-header {
+      position: sticky;
+      top: 0;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background-color: var(--primary-400);
+      /* span the panel's horizontal padding so scrolled content hides behind it;
+         no negative top margin — the panel has no top padding, so the header
+         sits flush at the very top with nothing able to peek above it */
+      margin: 0 -1.5rem 0;
+      padding: 1.5rem 1.5rem 0.9rem;
+      border-radius: 16px 16px 0 0;
+    }
+
     .settings-title {
       font-size: 1.4rem;
       font-weight: 700;
       color: #fff;
+    }
+
+    .settings-close-btn {
+      flex-shrink: 0;
+      width: 2.1rem;
+      height: 2.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.7rem;
+      line-height: 1;
+      font-family: inherit;
+      color: var(--primary-100);
+      background: none;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .settings-close-btn:hover {
+      color: #fff;
+      background-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .settings-close-btn:focus-visible {
+      outline: 2px solid var(--paper);
+      outline-offset: 2px;
     }
 
     .settings-field {
@@ -951,7 +1054,7 @@
       font-size: 1.1rem;
       font-weight: 700;
       font-family: inherit;
-      color: #fff;
+      color: var(--ink);
       background-color: var(--olive-deep);
       border: none;
       border-radius: 60px;
@@ -986,7 +1089,6 @@
     .settings-helper {
       font-size: 0.8rem;
       color: var(--primary-100);
-      opacity: 0.8;
       text-align: left;
       line-height: 1.4;
     }
@@ -1073,6 +1175,85 @@
     }
 
     .settings-reset-btn:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    /* === Settings: Prompt packs === */
+    .settings-pack-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-self: stretch;
+    }
+
+    .settings-pack-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--primary-100);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      opacity: 0.85;
+      text-align: left;
+    }
+
+    .settings-pack-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .settings-pack-chip {
+      background-color: var(--primary-300);
+      border: none;
+      color: var(--paper);
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0.35rem 0.75rem;
+      border-radius: 40px;
+      transition: background-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .settings-pack-chip:hover {
+      background-color: var(--accent-1);
+      color: var(--ink);
+      transform: scale(1.04);
+    }
+
+    .settings-pack-chip:active {
+      transform: scale(0.97);
+    }
+
+    .settings-pack-chip:focus-visible {
+      outline: 2px solid var(--paper);
+      outline-offset: 2px;
+    }
+
+    .settings-pack-io {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 0.6rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .settings-pack-io-btn {
+      background: none;
+      border: none;
+      color: var(--primary-100);
+      font-family: inherit;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0.2rem 0;
+      opacity: 0.8;
+      transition: opacity 0.2s ease;
+    }
+
+    .settings-pack-io-btn:hover {
       opacity: 1;
       text-decoration: underline;
     }
@@ -1265,7 +1446,10 @@
   <!-- Settings overlay -->
   <div class="settings-overlay" id="settings-overlay">
     <div class="settings-panel">
-      <div class="settings-title">Settings</div>
+      <div class="settings-header">
+        <div class="settings-title">Settings</div>
+        <button class="settings-close-btn" id="settings-close-btn" aria-label="Close settings" title="Close">&times;</button>
+      </div>
       <div class="settings-field">
         <label for="settings-title-input">App Title</label>
         <input type="text" id="settings-title-input" placeholder="Idea Spinner">
@@ -1278,6 +1462,15 @@
       <div class="settings-helper">These prompts help participants think of someone in their community.</div>
       <div class="settings-prompt-list" id="settings-name-prompts"></div>
       <button class="settings-add-btn" id="settings-name-add">+ Add prompt</button>
+      <div class="settings-pack-block">
+        <div class="settings-pack-label">Or add a pack</div>
+        <div class="settings-pack-chips" id="settings-name-packs"></div>
+        <div class="settings-pack-io">
+          <button class="settings-pack-io-btn" id="settings-name-import">&#8593; Import pack</button>
+          <button class="settings-pack-io-btn" id="settings-name-export">&#8595; Export as pack</button>
+          <input type="file" id="settings-name-file" accept=".txt,text/plain" hidden>
+        </div>
+      </div>
       <button class="settings-reset-btn" id="settings-name-reset">Reset to defaults</button>
 
       <hr class="settings-divider">
@@ -1287,6 +1480,15 @@
       <div class="settings-helper">Use [NAME] as a placeholder — it gets replaced with the participant's name.</div>
       <div class="settings-prompt-list" id="settings-idea-prompts"></div>
       <button class="settings-add-btn" id="settings-idea-add">+ Add prompt</button>
+      <div class="settings-pack-block">
+        <div class="settings-pack-label">Or add a pack</div>
+        <div class="settings-pack-chips" id="settings-idea-packs"></div>
+        <div class="settings-pack-io">
+          <button class="settings-pack-io-btn" id="settings-idea-import">&#8593; Import pack</button>
+          <button class="settings-pack-io-btn" id="settings-idea-export">&#8595; Export as pack</button>
+          <input type="file" id="settings-idea-file" accept=".txt,text/plain" hidden>
+        </div>
+      </div>
       <button class="settings-reset-btn" id="settings-idea-reset">Reset to defaults</button>
 
       <hr class="settings-divider">
@@ -1356,13 +1558,16 @@
     </div>
     <div class="export-toolbar">
       <button class="export-btn" id="export-copy" disabled>Copy</button>
-      <button class="export-btn" id="export-email" disabled>Email</button>
+      <button class="export-btn" id="export-email" disabled>Email &#9662;</button>
       <button class="export-btn" id="export-csv" disabled>CSV</button>
       <button class="export-btn" id="export-json" disabled>Decidim JSON</button>
     </div>
+    <div class="review-actions">
+      <button class="feedback-btn" id="feedback-btn">&#128172; Tell us how it went</button>
+      <button class="clear-all-btn" id="clear-all-btn" disabled>Clear all proposals</button>
+    </div>
     <div class="review-footer">
       <button class="back-btn" id="review-back-btn">&#8592; Back</button>
-      <button class="clear-all-btn" id="clear-all-btn" disabled>Clear all proposals</button>
     </div>
   </div>
 
@@ -1400,42 +1605,26 @@
     <div class="spinner-prompt-box">
       <p class="spinner-prompt" id="spinner-prompt"></p>
     </div>
-    <textarea
-      class="spinner-answer"
-      id="spinner-answer"
-      placeholder="Your answer..."
-    ></textarea>
-    <div class="button-row">
-      <button class="btn" id="have-idea-btn">Turn This Into a Proposal</button>
-    </div>
-  </div>
-
-  <!-- ===== Proposal Screen ===== -->
-  <div class="screen" id="proposal-screen">
-    <div class="step-dots" id="step-dots-proposal"></div>
-    <div class="proposal-banner" id="proposal-banner"></div>
-    <div class="inspiration-card" id="inspiration-card">
-      <div class="inspiration-label">Your inspiration</div>
-      <div class="inspiration-prompt" id="inspiration-prompt"></div>
-      <div class="inspiration-answer" id="inspiration-answer"></div>
-    </div>
     <div class="proposal-form">
       <div class="field-group">
-        <label class="field-label" for="proposal-title">Title</label>
-        <input type="text" class="field-input" id="proposal-title" placeholder="Give your idea a name">
+        <label class="field-label spinner-answer-label" for="spinner-answer">Title</label>
+        <input type="text" class="field-input" id="spinner-answer" placeholder="Your answer...">
       </div>
-      <div class="field-group">
-        <label class="field-label" for="proposal-money">What would we do with the money?</label>
-        <textarea class="field-input" id="proposal-money" placeholder="Describe how the funds would be used"></textarea>
+      <div class="spinner-extra" id="spinner-extra">
+        <div class="spinner-extra-inner">
+          <div class="field-group">
+            <label class="field-label" for="proposal-money">What would we do with the money?</label>
+            <textarea class="field-input" id="proposal-money" placeholder="Describe how the funds would be used"></textarea>
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="proposal-why">Why is this needed?</label>
+            <textarea class="field-input" id="proposal-why" placeholder="Why does this matter for the community?"></textarea>
+          </div>
+          <div class="button-row">
+            <button class="btn" id="save-proposal-btn">Save Proposal</button>
+          </div>
+        </div>
       </div>
-      <div class="field-group">
-        <label class="field-label" for="proposal-why">Why is this needed?</label>
-        <textarea class="field-input" id="proposal-why" placeholder="Why does this matter for the community?"></textarea>
-      </div>
-    </div>
-    <div class="button-row">
-      <button class="btn" id="save-proposal-btn">Save Proposal</button>
-      <button class="btn-secondary" id="spin-more-btn">Spin More Ideas</button>
     </div>
   </div>
 
@@ -1466,7 +1655,7 @@
 
     const MAX_NAMES = 5;
     const MIN_NAMES_BEFORE_SKIP = 2;
-    const APP_STEPS = ['names', 'spinner', 'proposal'];
+    const APP_STEPS = ['names', 'spinner'];
 
     // ---- Name Prompts Pool ----
     const NAME_PROMPTS = [
@@ -1500,6 +1689,41 @@
       "If you could build one thing for [NAME], what would it be?"
     ];
 
+    // ---- Thematic prompt packs ----
+    // Clicking a pack APPENDS its prompts to the active editor list (dedup exact
+    // matches). Packs never touch localStorage or the ?config= URL — they're just
+    // a fast way to build a prompt list. Draft copy; refine in the Airtable base.
+    const PEOPLE_PACKS = [
+      { name: "Youth", prompts: [
+        "A young person who could use a safe place to hang out after school",
+        "A teenager in your life who wants to learn a skill but can't afford it",
+        "A kid you know who has a long or unsafe trip to school"
+      ] },
+      { name: "Different abilities", prompts: [
+        "Someone you know who uses a wheelchair and finds the neighborhood hard to get around",
+        "A person in your life with a visual or hearing impairment who struggles in public spaces",
+        "Someone you know with a disability who has trouble finding accessible work or activities"
+      ] }
+    ];
+
+    const IDEA_PACKS = [
+      { name: "Capital projects", prompts: [
+        "What building or public space could be built or fixed up for [NAME]?",
+        "What piece of infrastructure would make [NAME]'s daily life easier?",
+        "If the city could build one lasting thing for [NAME], what would it be?"
+      ] },
+      { name: "Public health", prompts: [
+        "What would help [NAME] stay healthy and well?",
+        "What makes it hard for [NAME] to get care when they need it?",
+        "What could the community do to help [NAME] eat well or stay active?"
+      ] },
+      { name: "Transit safety", prompts: [
+        "What would make [NAME]'s trip around town safer?",
+        "Where does [NAME] feel unsafe walking, biking, or waiting for transit?",
+        "What street or crossing near [NAME] needs to be made safer?"
+      ] }
+    ];
+
     const STEP_LABELS = [
       "Think of someone...",
       "Think of someone else...",
@@ -1509,7 +1733,7 @@
     ];
 
     // ---- Settings ----
-    var DEFAULT_THEME = { bg: '#224749', paper: '#FAF4DD', accent: '#A67C52', button: '#6E744F' };
+    var DEFAULT_THEME = { bg: '#224749', paper: '#F2F4F4', accent: '#E8A648', button: '#E8A648' };
 
     function getSettings() {
       try {
@@ -1652,7 +1876,7 @@
       root.setProperty('--primary-700', adjustLightness(bg, -10));
       root.setProperty('--primary-400', adjustLightness(bg, 6));
       root.setProperty('--primary-300', adjustLightness(bg, 12));
-      root.setProperty('--primary-100', desaturate(bg, 30));
+      root.setProperty('--primary-100', '#D6E1E1'); // muted light text — fixed & readable, not derived
       root.setProperty('--hover-teal', adjustLightness(bg, -5));
       root.setProperty('--active-teal', adjustLightness(bg, -10));
       root.setProperty('--paper', paper);
@@ -1665,8 +1889,8 @@
       root.setProperty('--olive-deep', button);
       root.setProperty('--olive-hover', adjustLightness(button, 8));
       root.setProperty('--olive-active', adjustLightness(button, -5));
-      root.setProperty('--secondary', adjustLightness(button, 15));
-      root.setProperty('--ink', luminance(paper) > 0.5 ? '#282413' : '#f5f0e0');
+      root.setProperty('--secondary', '#6B7575'); // placeholder — fixed neutral, not derived from button
+      root.setProperty('--ink', luminance(paper) > 0.5 ? '#131818' : '#F2F4F4');
     }
 
     function getTheme() {
@@ -1712,6 +1936,74 @@
         if (v) result.push(v);
       });
       return result;
+    }
+
+    // ---- Prompt packs (add/import/export) ----
+    // Append prompts to an editor, skipping exact duplicates. Returns how many
+    // were actually added.
+    function appendPromptsToEditor(containerId, prompts) {
+      var container = document.getElementById(containerId);
+      var existing = readPromptEditor(containerId);
+      var added = 0;
+      prompts.forEach(function(p) {
+        var t = (p || '').trim();
+        if (!t || existing.indexOf(t) !== -1) return;
+        addPromptRow(container, t);
+        existing.push(t);
+        added++;
+      });
+      return added;
+    }
+
+    function packToast(added, source) {
+      showToast(added > 0
+        ? 'Added ' + added + ' prompt' + (added === 1 ? '' : 's') + (source ? ' from ' + source : '')
+        : 'Those prompts are already in the list');
+    }
+
+    // Render the clickable pack chips once (they're static).
+    function renderPackChips(containerId, packs, editorId) {
+      var container = document.getElementById(containerId);
+      container.innerHTML = '';
+      packs.forEach(function(pack) {
+        var chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'settings-pack-chip';
+        chip.textContent = '+ ' + pack.name;
+        chip.title = 'Add ' + pack.prompts.length + ' prompts from “' + pack.name + '”';
+        chip.addEventListener('click', function() {
+          packToast(appendPromptsToEditor(editorId, pack.prompts), pack.name);
+        });
+        container.appendChild(chip);
+      });
+    }
+
+    // Export the current editor list as a plain-text pack file (#11) — one prompt
+    // per line, so it's trivially editable in any text editor.
+    function exportPack(type, editorId) {
+      var prompts = readPromptEditor(editorId);
+      if (!prompts.length) { showToast('Add some prompts first'); return; }
+      var suggested = type === 'people' ? 'people prompts' : 'idea prompts';
+      var name = window.prompt('Name this pack (used for the file name):', suggested);
+      if (name === null) return; // cancelled
+      name = name.trim() || suggested;
+      var blob = new Blob([prompts.join('\n') + '\n'], { type: 'text/plain;charset=utf-8' });
+      var slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'pack';
+      downloadBlob(blob, 'idea-spinner-' + type + '-pack-' + slug + '.txt');
+    }
+
+    // Import a plain-text pack (one prompt per line) and append to the editor the
+    // Import button belongs to (#11). Blank lines are ignored.
+    function importPack(editorId, file) {
+      var reader = new FileReader();
+      reader.onload = function() {
+        var lines = String(reader.result).split(/\r?\n/)
+          .map(function(l) { return l.trim(); })
+          .filter(function(l) { return l.length > 0; });
+        if (!lines.length) { showToast('No prompts found in that file'); return; }
+        packToast(appendPromptsToEditor(editorId, lines), file.name.replace(/\.[^.]+$/, ''));
+      };
+      reader.readAsText(file);
     }
 
     function arraysEqual(a, b) {
@@ -1864,6 +2156,19 @@
 
     document.getElementById('settings-btn').addEventListener('click', openSettings);
     document.getElementById('settings-done-btn').addEventListener('click', closeSettings);
+    // Easier exits — all save-and-close, matching "Done":
+    document.getElementById('settings-close-btn').addEventListener('click', closeSettings);
+    // click the dark backdrop (not the panel) to close
+    document.getElementById('settings-overlay').addEventListener('click', function (e) {
+      if (e.target === this) closeSettings();
+    });
+    // Escape closes the settings panel
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' &&
+          document.getElementById('settings-overlay').classList.contains('visible')) {
+        closeSettings();
+      }
+    });
 
     // Prompt editor add buttons
     document.getElementById('settings-name-add').addEventListener('click', function() {
@@ -1881,6 +2186,32 @@
     });
     document.getElementById('settings-idea-reset').addEventListener('click', function() {
       renderPromptEditor('settings-idea-prompts', IDEA_PROMPTS);
+    });
+
+    // Prompt pack chips (click to append) + import/export
+    renderPackChips('settings-name-packs', PEOPLE_PACKS, 'settings-name-prompts');
+    renderPackChips('settings-idea-packs', IDEA_PACKS, 'settings-idea-prompts');
+
+    document.getElementById('settings-name-export').addEventListener('click', function() {
+      exportPack('people', 'settings-name-prompts');
+    });
+    document.getElementById('settings-idea-export').addEventListener('click', function() {
+      exportPack('idea', 'settings-idea-prompts');
+    });
+
+    document.getElementById('settings-name-import').addEventListener('click', function() {
+      document.getElementById('settings-name-file').click();
+    });
+    document.getElementById('settings-idea-import').addEventListener('click', function() {
+      document.getElementById('settings-idea-file').click();
+    });
+    document.getElementById('settings-name-file').addEventListener('change', function() {
+      if (this.files[0]) importPack('settings-name-prompts', this.files[0]);
+      this.value = '';
+    });
+    document.getElementById('settings-idea-file').addEventListener('change', function() {
+      if (this.files[0]) importPack('settings-idea-prompts', this.files[0]);
+      this.value = '';
     });
 
     // Color input sync
@@ -1913,6 +2244,7 @@
 
     // ---- Helpers ----
     function showScreen(id) {
+      if (typeof closeEmailMenu === 'function') closeEmailMenu();
       document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
       const screen = document.getElementById(id);
       screen.classList.add('active');
@@ -2177,22 +2509,176 @@
       });
     });
 
-    // --- Email ---
-    document.getElementById('export-email').addEventListener('click', function () {
-      var selected = getSelectedProposals();
-      if (!selected.length) return;
-      var emailInput = document.getElementById('email-input');
-      var recipient = emailInput.value.trim();
-      // Save for next session
-      if (recipient) localStorage.setItem('ideaspinner-email', recipient);
+    // ========================================
+    //  EMAIL CLIENT PICKER (shared by export + feedback)
+    // ========================================
+    // A raw mailto: silently does nothing on a borrowed laptop with no desktop
+    // mail client — the common case for a facilitator. So we offer a small menu:
+    // the device mail app (mailto:, which also covers Apple Mail on iPhone/Mac)
+    // plus web-compose links for the big webmail providers.
+    var EMAIL_PROVIDERS = [
+      { id: 'mailto',  label: 'Mail app', newTab: false },
+      { id: 'gmail',   label: 'Gmail',    newTab: true },
+      { id: 'outlook', label: 'Outlook',  newTab: true },
+      { id: 'yahoo',   label: 'Yahoo',    newTab: true }
+    ];
 
-      var subject = encodeURIComponent('Idea Spinner Proposals');
-      var intro = 'Here are the proposals from our Idea Spinner session:\n\n';
-      var body = encodeURIComponent(intro + formatAsPlainText(selected));
-      window.location.href = 'mailto:' + encodeURIComponent(recipient) +
-        '?subject=' + subject + '&body=' + body;
-      markExported();
+    function buildComposeUrl(provider, to, subject, body) {
+      var t = encodeURIComponent(to || '');
+      var s = encodeURIComponent(subject || '');
+      var b = encodeURIComponent(body || '');
+      switch (provider) {
+        case 'gmail':
+          return 'https://mail.google.com/mail/?view=cm&fs=1&to=' + t + '&su=' + s + '&body=' + b;
+        case 'outlook':
+          return 'https://outlook.office.com/mail/deeplink/compose?to=' + t + '&subject=' + s + '&body=' + b;
+        case 'yahoo':
+          return 'https://compose.mail.yahoo.com/?to=' + t + '&subject=' + s + '&body=' + b;
+        case 'mailto':
+        default:
+          return 'mailto:' + t + '?subject=' + s + '&body=' + b;
+      }
+    }
+
+    var emailMenuTrigger = null;
+
+    function getEmailMenu() {
+      var menu = document.getElementById('email-menu');
+      if (!menu) {
+        menu = document.createElement('div');
+        menu.id = 'email-menu';
+        menu.className = 'email-menu';
+        menu.setAttribute('role', 'menu');
+        document.body.appendChild(menu);
+      }
+      return menu;
+    }
+
+    function closeEmailMenu() {
+      var menu = document.getElementById('email-menu');
+      if (menu) menu.classList.remove('open');
+      if (emailMenuTrigger) emailMenuTrigger.setAttribute('aria-expanded', 'false');
+      emailMenuTrigger = null;
+    }
+
+    // ctx = { to, subject, body, note? }; onChoose(providerId) fires on pick.
+    function openEmailMenu(trigger, ctx, onChoose) {
+      var menu = getEmailMenu();
+      menu.innerHTML = '';
+      if (ctx.note) {
+        var note = document.createElement('div');
+        note.className = 'email-menu-note';
+        note.textContent = ctx.note;
+        menu.appendChild(note);
+      }
+      EMAIL_PROVIDERS.forEach(function (p) {
+        var a = document.createElement('a');
+        a.className = 'email-menu-item';
+        a.setAttribute('role', 'menuitem');
+        a.textContent = p.label;
+        a.href = buildComposeUrl(p.id, ctx.to, ctx.subject, ctx.body);
+        a.dataset.provider = p.id;
+        if (p.newTab) { a.target = '_blank'; a.rel = 'noopener'; }
+        a.addEventListener('click', function () {
+          closeEmailMenu();
+          if (onChoose) onChoose(p.id);
+          // default navigation proceeds: mailto same-tab, webmail new tab
+        });
+        menu.appendChild(a);
+      });
+      // Show first so we can measure, then place it so it stays on screen
+      // (flip above the trigger when there's no room below — matters on phones,
+      // where the export buttons sit low).
+      menu.classList.add('open');
+      var r = trigger.getBoundingClientRect();
+      var mh = menu.offsetHeight, mw = menu.offsetWidth;
+      var top;
+      if (r.bottom + mh + 6 > window.innerHeight && r.top - mh - 6 > 0) {
+        top = r.top + window.scrollY - mh - 6;   // open upward
+      } else {
+        top = r.bottom + window.scrollY + 6;     // open downward
+      }
+      var left = r.left + window.scrollX;
+      if (left + mw > window.innerWidth - 8) {
+        left = Math.max(8, window.innerWidth - mw - 8) + window.scrollX;
+      }
+      menu.style.top = top + 'px';
+      menu.style.left = left + 'px';
+      emailMenuTrigger = trigger;
+      trigger.setAttribute('aria-expanded', 'true');
+    }
+
+    // Wire a trigger button to the picker. getCtx() returns the mail context at
+    // click time, or null to abort (e.g. nothing selected).
+    function wireEmailTrigger(trigger, getCtx, onChoose) {
+      trigger.setAttribute('data-email-trigger', '');
+      trigger.setAttribute('aria-haspopup', 'true');
+      trigger.setAttribute('aria-expanded', 'false');
+      trigger.addEventListener('click', function () {
+        if (emailMenuTrigger === trigger) { closeEmailMenu(); return; }
+        closeEmailMenu();
+        var ctx = getCtx();
+        if (!ctx) return;
+        openEmailMenu(trigger, ctx, onChoose);
+      });
+    }
+
+    // Close the menu on outside click / Escape.
+    document.addEventListener('click', function (e) {
+      if (!emailMenuTrigger) return;
+      if (e.target.closest && e.target.closest('[data-email-trigger]')) return;
+      var menu = document.getElementById('email-menu');
+      if (menu && menu.contains(e.target)) return;
+      closeEmailMenu();
     });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeEmailMenu();
+    });
+
+    // --- Email export (#12): pick a client, compose the proposals email ---
+    wireEmailTrigger(
+      document.getElementById('export-email'),
+      function () {
+        var selected = getSelectedProposals();
+        if (!selected.length) return null;
+        var recipient = document.getElementById('email-input').value.trim();
+        if (recipient) localStorage.setItem('ideaspinner-email', recipient);
+        var intro = 'Here are the proposals from our Idea Spinner session:\n\n';
+        return {
+          to: recipient,
+          subject: 'Idea Spinner Proposals',
+          body: intro + formatAsPlainText(selected),
+          note: 'Long lists may get trimmed — use Copy or CSV for big sessions.'
+        };
+      },
+      function () { markExported(); }
+    );
+
+    // --- "Tell us how it went" (#16): opt-in feedback email to the maker ---
+    var FEEDBACK_EMAIL = 'francesco@wildestfuture.com';
+
+    function buildFeedbackBody() {
+      var n = state.proposals.length;
+      var noun = n === 1 ? 'proposal' : 'proposals';
+      return 'Thanks for trying Idea Spinner! Answer what you can and delete the rest:\n\n' +
+        '• Where were you / what kind of session was it?\n' +
+        '• Roughly how many people took part?\n' +
+        '• What worked well?\n' +
+        '• What broke or confused people?\n\n' +
+        'This session created ' + n + ' ' + noun + '.\n';
+    }
+
+    wireEmailTrigger(
+      document.getElementById('feedback-btn'),
+      function () {
+        return {
+          to: FEEDBACK_EMAIL,
+          subject: 'Idea Spinner — how it went',
+          body: buildFeedbackBody()
+        };
+      },
+      function () { showToast('Thanks! Opening your email…'); }
+    );
 
     // --- CSV ---
     document.getElementById('export-csv').addEventListener('click', function () {
@@ -2416,70 +2902,36 @@
       state.currentSpinPrompt = raw;
 
       renderSpinnerPrompt(raw, name);
+      // Collapse back to the blank state (Spin again is the only reset).
+      document.getElementById('spinner-screen').classList.remove('answering');
       document.getElementById('spinner-answer').value = '';
+      document.getElementById('proposal-money').value = '';
+      document.getElementById('proposal-why').value = '';
       document.getElementById('spinner-answer').focus();
       renderStepDots('step-dots-spinner', 'spinner');
     }
 
     document.getElementById('spin-btn').addEventListener('click', spin);
 
-    document.getElementById('have-idea-btn').addEventListener('click', function () {
-      const answer = document.getElementById('spinner-answer').value.trim();
-      const displayPrompt = state.currentSpinPrompt.replace(/\[NAME\]/g, state.currentSpinName);
-      goToProposal(state.currentSpinName, displayPrompt, answer);
+    // Typing an answer reveals the Title label + money/why + Save. Reveal is
+    // one-way per spin: clearing the title does NOT re-hide (so retitling from
+    // scratch keeps money/why) — only "Spin again" resets the screen.
+    document.getElementById('spinner-answer').addEventListener('input', function () {
+      if (this.value.trim().length > 0) {
+        document.getElementById('spinner-screen').classList.add('answering');
+      }
     });
 
-    // ========================================
-    //  PROPOSAL SCREEN
-    // ========================================
-
-    function goToProposal(name, prompt, answer) {
-      showScreen('proposal-screen');
-
-      // Banner
-      const banner = document.getElementById('proposal-banner');
-      banner.innerHTML = '';
-      banner.appendChild(document.createTextNode('Designing for people like '));
-      const nameSpan = document.createElement('span');
-      nameSpan.className = 'name-variable';
-      nameSpan.textContent = name;
-      banner.appendChild(nameSpan);
-
-      // Inspiration card
-      const inspirationCard = document.getElementById('inspiration-card');
-      const inspirationPrompt = document.getElementById('inspiration-prompt');
-      const inspirationAnswer = document.getElementById('inspiration-answer');
-
-      inspirationPrompt.textContent = prompt;
-
-      if (answer) {
-        inspirationAnswer.textContent = '"' + answer + '"';
-        inspirationCard.style.display = '';
-      } else {
-        inspirationAnswer.textContent = '';
-        // Still show the prompt they were looking at
-        inspirationCard.style.display = '';
-      }
-
-      // Clear form
-      document.getElementById('proposal-title').value = '';
-      document.getElementById('proposal-money').value = '';
-      document.getElementById('proposal-why').value = '';
-      document.getElementById('proposal-title').focus();
-
-      renderStepDots('step-dots-proposal', 'proposal');
-    }
-
     document.getElementById('save-proposal-btn').addEventListener('click', function () {
-      const title = document.getElementById('proposal-title').value.trim();
+      const titleEl = document.getElementById('spinner-answer');
+      const title = titleEl.value.trim();
       const money = document.getElementById('proposal-money').value.trim();
       const why = document.getElementById('proposal-why').value.trim();
 
       if (!title) {
-        const el = document.getElementById('proposal-title');
-        el.focus();
-        el.style.borderColor = 'var(--accent-2)';
-        setTimeout(() => { el.style.borderColor = 'transparent'; }, 800);
+        titleEl.focus();
+        titleEl.style.borderColor = 'var(--accent-2)';
+        setTimeout(() => { titleEl.style.borderColor = 'transparent'; }, 800);
         return;
       }
 
@@ -2494,10 +2946,6 @@
       goToThankYou();
     });
 
-    document.getElementById('spin-more-btn').addEventListener('click', function () {
-      goToSpinner();
-    });
-
     // ========================================
     //  THANK YOU SCREEN
     // ========================================
@@ -2507,7 +2955,7 @@
       const count = state.proposals.length;
       document.getElementById('proposal-count-badge').textContent =
         count + ' proposal' + (count === 1 ? '' : 's') + ' saved this session';
-      renderStepDots('step-dots-thankyou', 'proposal');
+      renderStepDots('step-dots-thankyou', 'spinner');
       renderProposalIndicator();
     }
 
