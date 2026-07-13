@@ -3,6 +3,11 @@
 All notable changes to Idea Spinner. Versions follow [Semantic Versioning](https://semver.org).
 Pre-1.0: still evolving quickly, so minor versions may include behavior/UI changes.
 
+## [0.3.3] — 2026-07-13
+
+### Fixed
+- Grammar in a "People with different abilities" pack prompt ("uses a device").
+
 ## [0.3.2] — 2026-07-13
 
 ### Changed
